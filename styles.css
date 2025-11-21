@@ -1,304 +1,241 @@
-/* 下载相关样式 */
-
-/* 进度条容器样式 */
-.download-progress-container {
-    position: fixed;
-    bottom: 60px;
-    right: 20px;
-    background: white;
-    padding: 15px;
-    border-radius: 6px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    z-index: 9998;
-    font-size: 14px;
-    border: 1px solid #e8e8e8;
-    max-height: 500px;
-    overflow-y: auto;
+/* 全局样式 */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-/* 图片下载进度条容器 */
-#images-progress-container {
-    width: 300px;
-}
-
-/* 批量下载进度条容器 */
-#batch-progress-container {
-    width: 400px;
-}
-
-/* 进度条标题样式 */
-.progress-title {
-    font-weight: bold;
-    margin-bottom: 12px;
-    font-size: 16px;
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    line-height: 1.6;
     color: #333;
-}
-
-/* 控制按钮区域 */
-.progress-controls {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f0f2f5;
+    min-height: 100vh;
     display: flex;
-    justify-content: space-between;
-    margin-bottom: 12px;
+    align-items: center;
+    justify-content: center;
 }
 
-/* 控制按钮样式 */
-.progress-controls button {
-    padding: 4px 12px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 12px;
-    transition: background-color 0.2s ease;
-}
-
-/* 暂停按钮 */
-.pause-button {
-    background-color: #faad14;
-    color: white;
-}
-
-.pause-button:hover {
-    background-color: #f59e0b;
-}
-
-/* 继续按钮 */
-.resume-button {
-    background-color: #52c41a;
-    color: white;
-}
-
-.resume-button:hover {
-    background-color: #389e0d;
-}
-
-/* 关闭按钮 */
-.close-button {
-    background-color: #f5f5f5;
-    color: #666;
-}
-
-.close-button:hover {
-    background-color: #e8e8e8;
-}
-
-/* 进度条背景 */
-.progress-background {
+/* 主容器样式 */
+.container {
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     width: 100%;
-    height: 12px;
-    background-color: #f0f0f0;
-    border-radius: 6px;
-    overflow: hidden;
-    margin-bottom: 10px;
-    box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
-    position: relative;
 }
 
-/* 进度条 */
-.progress-bar {
-    height: 100%;
-    width: 0%;
-    background-color: #1890ff;
-    transition: width 0.3s ease, background-color 0.3s ease;
-    border-radius: 6px;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-}
-
-/* 进度条渐变和动画效果 */
-.progress-bar::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-    animation: shimmer 2.5s infinite;
-}
-
-@keyframes shimmer {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(100%); }
-}
-
-/* 进度条颜色变化 */
-.progress-bar.progress-low {
-    background: linear-gradient(90deg, #1890ff, #40a9ff);
-}
-
-.progress-bar.progress-medium {
-    background: linear-gradient(90deg, #faad14, #ffc53d);
-}
-
-.progress-bar.progress-high {
-    background: linear-gradient(90deg, #52c41a, #73d13d);
-}
-
-/* 进度完成时的脉动效果 */
-.progress-bar.progress-completing {
-    background: linear-gradient(90deg, #52c41a, #73d13d);
-    animation: pulse 1.5s infinite;
-}
-
-@keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.8; }
-}
-}
-
-/* 进度文本 */
-.progress-text {
-    font-size: 13px;
-    color: #555;
-    font-weight: 500;
+/* 标题样式 */
+h1 {
     text-align: center;
-    margin-bottom: 8px;
-    line-height: 1.4;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    padding: 4px 0;
-    transition: color 0.3s ease;
-}
-
-.progress-text:hover {
-    color: #333;
-}
-
-/* 进度容器悬停效果 */
-.progress-background:hover .progress-bar {
-    box-shadow: 0 0 8px rgba(24, 144, 255, 0.3);
-}
-    margin-bottom: 12px;
-    font-weight: 500;
-}
-
-/* 文件列表标题 */
-.files-list-title {
-    font-weight: 500;
-    font-size: 13px;
-    color: #333;
-    margin-bottom: 8px;
-}
-
-/* 文件状态容器 */
-.file-status-container {
-    font-size: 12px;
-    max-height: 250px;
-    overflow-y: auto;
-    border: 1px solid #e8e8e8;
-    border-radius: 4px;
-    padding: 8px;
-}
-
-/* 单个文件状态 */
-.file-status-item {
-    margin-bottom: 8px;
-    padding: 6px;
-    border: 1px solid #e8e8e8;
-    border-radius: 4px;
-    background-color: #fafafa;
-}
-
-/* 文件名 */
-.file-status-filename {
-    font-weight: 500;
-    margin-bottom: 4px;
-    color: #333;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-/* 文件状态文本 */
-.file-status-text {
-    font-size: 11px;
-    color: #999;
-    margin-bottom: 4px;
-}
-
-/* 成功状态颜色 */
-.file-status-text.success {
-    color: #52c41a;
-}
-
-/* 失败状态颜色 */
-.file-status-text.error {
-    color: #ff4d4f;
-}
-
-/* 进行中状态颜色 */
-.file-status-text.info {
     color: #1890ff;
+    margin-bottom: 30px;
+    font-size: 28px;
+    font-weight: 600;
 }
 
-/* 重试状态颜色 */
-.file-status-text.warning {
-    color: #faad14;
-}
-
-/* 文件进度条背景 */
-.file-progress-background {
-    width: 100%;
-    height: 4px;
-    background-color: #f0f0f0;
-    border-radius: 2px;
-    overflow: hidden;
-}
-
-/* 文件进度条 */
-.file-progress-bar {
-    height: 100%;
-    width: 0%;
-    background-color: #1890ff;
-    transition: width 0.2s ease;
-}
-
-/* 通知样式 */
-.notification {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    padding: 12px 20px;
-    border-radius: 4px;
-    color: white;
-    fontSize: 14px;
+h2 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 22px;
     font-weight: 500;
-    z-index: 9999;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.3s, transform 0.3s;
 }
 
-/* 通知类型 */
-.notification-success {
+h3 {
+    color: #555;
+    margin-bottom: 15px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+/* 密码和主区域切换 */
+.password-section, .main-section, .result-section {
+    display: none;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.password-section.active, .main-section.active, .result-section.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* 表单组样式 */
+.form-group {
+    margin-bottom: 25px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #555;
+    font-size: 14px;
+}
+
+/* 输入框样式 */
+input[type="password"], textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e8e8e8;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    font-family: inherit;
+}
+
+input[type="password"]:focus, textarea:focus {
+    outline: none;
+    border-color: #1890ff;
+    box-shadow: 0 0 0 3px rgba(24, 144, 255, 0.1);
+}
+
+textarea {
+    min-height: 120px;
+    resize: vertical;
+    line-height: 1.5;
+}
+
+/* 按钮样式 */
+button {
+    background-color: #1890ff;
+    color: white;
+    border: none;
+    padding: 12px 32px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 120px;
+}
+
+button:hover:not(:disabled) {
+    background-color: #40a9ff;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(24, 144, 255, 0.3);
+}
+
+button:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+button:disabled {
+    background-color: #d9d9d9;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* 错误提示样式 */
+.error {
+    color: #ff4d4f;
+    margin-top: 8px;
+    font-size: 14px;
+    min-height: 20px;
+}
+
+/* 结果区域样式 */
+.result-section {
+    margin-top: 30px;
+    padding: 25px;
+    background-color: #f6ffed;
+    border: 1px solid #b7eb8f;
+    border-radius: 8px;
+}
+
+/* 预览容器样式 */
+.preview-container {
+    margin: 25px 0;
+    text-align: center;
+    padding: 15px;
+    background-color: #fafafa;
+    border-radius: 8px;
+    border: 1px solid #e8e8e8;
+}
+
+.preview-container img {
+    max-width: 100%;
+    max-height: 400px;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.preview-container img:hover {
+    transform: scale(1.02);
+}
+
+/* 下载按钮容器 */
+.download-buttons {
+    margin-top: 25px;
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.download-buttons button {
+    flex: 1;
+    min-width: 150px;
+    padding: 14px 24px;
+    font-size: 16px;
+}
+
+#downloadCover {
     background-color: #52c41a;
 }
 
-.notification-error {
-    background-color: #ff4d4f;
+#downloadCover:hover:not(:disabled) {
+    background-color: #73d13d;
 }
 
-.notification-info {
-    background-color: #1890ff;
+#downloadVideo {
+    background-color: #fa8c16;
 }
 
-/* 进度条悬停效果 */
-.progress-bar:hover {
-    opacity: 0.9;
+#downloadVideo:hover:not(:disabled) {
+    background-color: #ffa940;
+}
+
+/* 数据显示样式 */
+#videoTitle, #videoType {
+    padding: 10px 15px;
+    background-color: #fafafa;
+    border-radius: 6px;
+    border: 1px solid #e8e8e8;
+    word-break: break-all;
 }
 
 /* 响应式设计 */
 @media (max-width: 640px) {
-    #images-progress-container,
-    #batch-progress-container {
-        width: 90%;
-        bottom: 80px;
-        right: 5%;
-        left: 5%;
+    body {
+        padding: 15px;
     }
     
-    .file-status-container {
-        max-height: 200px;
+    .container {
+        padding: 25px 20px;
+    }
+    
+    h1 {
+        font-size: 24px;
+        margin-bottom: 25px;
+    }
+    
+    button {
+        width: 100%;
+        padding: 12px 24px;
+    }
+    
+    .download-buttons {
+        flex-direction: column;
     }
 }
