@@ -1,5 +1,5 @@
 // 全局变量
-const CORRECT_PASSWORD = '123456';
+const CORRECT_PASSWORD = 'liushieryyds';
 const API_URL = 'https://api.guijianpan.com/waterRemoveDetail/xxmQsyByAk';
 const API_KEY = 'b2d0603ff4cc4da48442f60d537fa28d';
 
